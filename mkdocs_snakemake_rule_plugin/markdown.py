@@ -4,6 +4,7 @@ import re
 TAG_SNAKEMAKE_SOURCE_RE = r"#SNAKEMAKE_RULE_SOURCE[A-Za-z0-9_-]+#"
 TAG_SNAKEMAKE_TABLE_RE = r"#SNAKEMAKE_RULE_TABLE[A-Za-z0-9_-]+#"
 
+
 class MissingConfigSettingError(ValueError):
     'Missing config setting'
     pass
@@ -20,11 +21,13 @@ def extract_snakemake_rule_section(parts, data):
     else:
         return data
 
+
 def remove_trailing_empty_lines(rule):
     if rule.endswith("\n"):
         return remove_trailing_empty_lines(rule.rstrip())
     else:
         return rule
+
 
 def extract_snakemake_rule(file_path, rule):
     rule_content = ""
@@ -37,7 +40,6 @@ def extract_snakemake_rule(file_path, rule):
                         rule_content += line
                     else:
                         return rule_content
-                    
     return rule_content
 
 
@@ -59,7 +61,7 @@ class markdown_gen:
         for g in re.finditer(TAG_SNAKEMAKE_SOURCE_RE, markdown):
             parts = g.group()[1:-1].split("__")
             if len(parts) != 3:
-                raise IncorrectTagError(f"Incorrect tag should be SNAKEMAKE_RULE_SOURCE__rulefilename__rulenamm was {g.group()}")            
+                raise IncorrectTagError(f"Incorrect tag should be SNAKEMAKE_RULE_SOURCE__rulefilename__rulenamm was {g.group()}")
             file_path = None
             for folder_path in self.config_rule_folders:
                 print(folder_path)
@@ -67,7 +69,7 @@ class markdown_gen:
                 print(file_path)
                 if os.path.exists(file_path):
                     break
-                file_path += ".smk" 
+                file_path += ".smk"
                 if os.path.exists(file_path):
                     break
                 else:
@@ -80,8 +82,8 @@ class markdown_gen:
         return markdown
 
     def markdown_source(self, code_item):
-        return  "```\n" + code_item + "\n```" 
-        
+        return "```\n" + code_item + "\n```"
+
     def set_config(self, config):
         self.config_rule_folders = set()
         folders_config = self.safe_get_value(config, "rule_folders")
