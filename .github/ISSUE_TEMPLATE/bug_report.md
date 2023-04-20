@@ -5,7 +5,7 @@ labels: bug
 ---
 
 <!--
-# hydra_genetics/prealignment bug report
+# {{ name }} bug report
 
 Hi there!
 
@@ -24,12 +24,6 @@ I have checked the following places for your error:
 
 <!-- A clear and concise description of what the bug is. -->
 
-## Steps to reproduce
-
-Steps to reproduce the behaviour:
-
-1. Command line: <!-- [e.g. `snakemake ...`] -->
-2. See error: <!-- [Please provide your error message] -->
 
 ## Expected behaviour
 
@@ -39,7 +33,7 @@ Steps to reproduce the behaviour:
 
 Have you provided the following extra information/files:
 
-- [ ] The command used to run the pipeline
+- [ ] The command used to run the tool
 
 ## System
 
@@ -48,14 +42,9 @@ Have you provided the following extra information/files:
 - OS: <!-- [e.g. CentOS Linux, macOS, Linux Mint...] -->
 - Version <!-- [e.g. 7, 10.13.6, 18.3...] -->
 
-## Snakemake Installation
+## smeds/mkdocs-snakemake-rule-plugin Installation
 
-- Version: <!-- [e.g. 6.8.0] -->
-
-## Container engine
-
-- Engine: <!-- [e.g. Conda, Docker, Singularity] -->
-- version: <!-- [e.g. 1.0.0] -->
+- Version: <!-- [e.g. 0.0.1] -->
 
 ## Additional context
 

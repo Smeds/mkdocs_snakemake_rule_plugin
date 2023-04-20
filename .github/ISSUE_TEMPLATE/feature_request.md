@@ -1,11 +1,11 @@
 ---
 name: Feature request
-about: Suggest an idea for the hydra_genetics/prealignment pipeline
+about: Suggest an idea for the smeds/mkdocs_snakemake_rule_plugin
 labels: enhancement
 ---
 
 <!--
-# hydra_genetics/prealignment feature request
+# {{ name }} feature request
 
 Hi there!
 
