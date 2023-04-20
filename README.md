@@ -26,5 +26,5 @@ SNAKEMAKE_RULE_SOURCE__filename__rulename
 
 
 ```
-#SNAKEMAKE_RULE_SOURCE__fastp__fastp_pe#"
+#SNAKEMAKE_RULE_SOURCE__fastp__fastp_pe#
 ```
