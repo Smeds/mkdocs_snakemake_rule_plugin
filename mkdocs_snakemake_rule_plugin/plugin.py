@@ -6,6 +6,7 @@ class SnakemakeRule(plugins.BasePlugin):
 
     config_scheme = (
         ("rule_folders", config.config_options.Type(list, default=[])),
+        ("schemas", config.config_options.Type(list, default=[])),
     )
 
     generator = markdown_gen()
