@@ -47,7 +47,7 @@ def extract_snakemake_rule(file_path, rule):
             if line.startswith('rule') and rule in line:
                 rule_content += line
                 for line in reader:
-                    if not line.startswith("rule") or line.startswith("def") or re.search(r"^[A-Za-z_-]+"):
+                    if not line.startswith("rule") and not line.startswith("def") and not re.search(r"^[A-Za-z_-]+"):
                         rule_content += line
                     else:
                         return rule_content
