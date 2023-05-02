@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.2.0...v0.2.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* handle files with several rules ([7ca256b](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/7ca256b9d131b4e29ace4d125938d01632cba778))
+
 ## [0.2.0](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.1.0...v0.2.0) (2023-04-21)
 
 
