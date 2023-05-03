@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.2.0...v0.2.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* add missing parameter to re.search ([e78c988](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/e78c98894269a230ae4dd50420305be4a2c460f0))
+* handle files with several rules ([7ca256b](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/7ca256b9d131b4e29ace4d125938d01632cba778))
+
 ## [0.2.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.2.0...v0.2.1) (2023-05-02)
 
 
