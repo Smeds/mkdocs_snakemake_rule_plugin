@@ -44,7 +44,7 @@ def extract_snakemake_rule(file_path, rule):
     rule_content = ""
     with open(file_path, 'r') as reader:
         for line in reader:
-            if line.startswith('rule') and rule in line:
+            if line.startswith('rule') and f"rule {rule}:" == line.strip():
                 rule_content += line
                 for line in reader:
                     # Stop when new rule, function or variable is found
