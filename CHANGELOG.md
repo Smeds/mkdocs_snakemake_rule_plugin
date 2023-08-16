@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.0...v0.3.1) (2023-08-16)
+
+
+### Bug Fixes
+
+* handle case when one rule name is a subset of another rules name ([e997fd8](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/e997fd8137c9b78afd97b23ad083853906848512))
+
 ## [0.3.0](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.2.1...v0.3.0) (2023-05-03)
 
 
