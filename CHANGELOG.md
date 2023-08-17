@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.1...v0.3.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* update variable parsing by looking at number of opening/closing parentheses ([687ba28](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/687ba2884beb6ea9a25a91fdec63df2f0cbe055f))
+
 ## [0.3.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.0...v0.3.1) (2023-08-16)
 
 
