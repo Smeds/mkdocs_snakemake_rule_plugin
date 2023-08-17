@@ -83,11 +83,21 @@ def remove_temp_and_output(value):
     return value
 
 
+def parse_variable(variable_info, rows):
+    start_parentheses = variable_info.count("(")
+    stop_paranthesis = variable_info.count(")")
+    if start_parentheses != stop_paranthesis:
+        variable_info += next(rows)
+        return parse_variable(variable_info, rows)
+    else:
+        return variable_info
+
+
 def markdown_table(rule_source, rule_schema):
     sections = ["input", "output", "params", "log", "benchmark",
                 "resources", "threads", "conda", "container",
                 "message", "shell", "wrapper", "script", "R"]
-
+    
     def get_input_variabels(rule_source, include_section_regex, exclude_section_regex):
         rows = iter(rule_source.split("\n"))
         section_dict = {}
@@ -95,20 +105,19 @@ def markdown_table(rule_source, rule_schema):
             if re.match(include_section_regex, line):
                 line = next(rows)
                 key = "missing"
+                line = parse_variable(line, rows)
                 value = line
                 if "=" in line:
-                    key, value = re.split("[ ]*=[ ]*", line)
+                    key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                     key = key.lstrip()
+                section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
                 for line in rows:
                     if re.match(exclude_section_regex, line):
-                        section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
                         return section_dict
-                    if "=" in line:
-                        section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
-                        key, value = re.split("[ ]*=[ ]*", line)
-                        key = key.lstrip()
-                    else:
-                        value += line
+                    line = parse_variable(line, rows)
+                    key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
+                    key = key.lstrip()
+                    section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
 
         return section_dict
