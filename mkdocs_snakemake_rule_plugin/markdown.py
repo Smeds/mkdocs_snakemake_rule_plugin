@@ -97,7 +97,7 @@ def markdown_table(rule_source, rule_schema):
     sections = ["input", "output", "params", "log", "benchmark",
                 "resources", "threads", "conda", "container",
                 "message", "shell", "wrapper", "script", "R"]
-    
+
     def get_input_variabels(rule_source, include_section_regex, exclude_section_regex):
         rows = iter(rule_source.split("\n"))
         section_dict = {}
