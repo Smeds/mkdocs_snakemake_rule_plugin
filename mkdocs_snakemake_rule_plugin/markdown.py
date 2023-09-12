@@ -84,8 +84,8 @@ def remove_temp_and_output(value):
 
 
 def parse_variable(variable_info, rows):
-    start_parentheses = variable_info.count("(")
-    stop_paranthesis = variable_info.count(")")
+    start_parentheses = variable_info.count("(") + variable_info.count("[")
+    stop_paranthesis = variable_info.count(")") + variable_info.count("]")
     if start_parentheses != stop_paranthesis:
         variable_info += next(rows)
         return parse_variable(variable_info, rows)
