@@ -63,6 +63,10 @@ def replace_newline(value):
     return value.replace("\n", "<br />")
 
 
+def remove_comment(value):
+    return value.replace(r"#.*", "")
+
+
 def remove_indent(value):
     return re.sub(r"[ ]{2,}", " ", re.sub(r"\t{2,}", " ", value))
 
@@ -110,15 +114,16 @@ def markdown_table(rule_source, rule_schema):
                 if "=" in line:
                     key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                     key = key.lstrip()
-                section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
+                section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
                 for line in rows:
                     if re.match(exclude_section_regex, line):
                         return section_dict
                     line = parse_variable(line, rows)
-                    key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
-                    key = key.lstrip()
-                    section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
-                section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(value).rstrip(",")))
+                    if "=" in line:
+                        key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
+                        key = key.lstrip()
+                        section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
+                section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
 
         return section_dict
 

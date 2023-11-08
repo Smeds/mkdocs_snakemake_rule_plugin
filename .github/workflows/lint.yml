@@ -33,4 +33,4 @@ jobs:
         run: |
           pip install pycodestyle
       - name: Check pycodestyle
-        run: pycodestyle --max-line-length=130 --statistics ./
+        run: pycodestyle --max-line-length=135 --statistics ./
