@@ -29,7 +29,7 @@ plugins:
 
 Format of tags are:
 - `#SNAKEMAKE_RULE_SOURCE__filename__rulename#` : for source code extraction
-- `#  SNAKEMAKE_RULE_TABLE__filename__rulename#` : for table generation
+- `#SNAKEMAKE_RULE_TABLE__filename__rulename#` : for table generation
 
 Tab parts:
 - first section identifies if rule source or table should be created
