@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.4](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.3...v0.3.4) (2023-11-08)
+
+
+### Bug Fixes
+
+* remove comments from parsed data ([507576e](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/507576e3ef455c37f9d7fd9f54439c12ed5eed2e))
+
 ## [0.3.3](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.2...v0.3.3) (2023-09-12)
 
 
