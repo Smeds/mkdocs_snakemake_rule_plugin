@@ -119,9 +119,10 @@ def markdown_table(rule_source, rule_schema):
                     if re.match(exclude_section_regex, line):
                         return section_dict
                     line = parse_variable(line, rows)
-                    key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
-                    key = key.lstrip()
-                    section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
+                    if "=" in line:
+                        key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
+                        key = key.lstrip()
+                        section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
 
         return section_dict
