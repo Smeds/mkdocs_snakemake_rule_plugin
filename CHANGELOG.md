@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.5](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.4...v0.3.5) (2023-11-08)
+
+
+### Bug Fixes
+
+* update readme ([92d9f23](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/92d9f2362b64cf2594e125511368dc756902c7f8))
+
 ## [0.3.4](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.3...v0.3.4) (2023-11-08)
 
 
