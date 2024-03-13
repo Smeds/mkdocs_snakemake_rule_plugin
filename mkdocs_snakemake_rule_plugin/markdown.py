@@ -44,11 +44,13 @@ def extract_snakemake_rule(file_path, rule):
     rule_content = ""
     with open(file_path, 'r') as reader:
         for line in reader:
-            if line.startswith('rule') and f"rule {rule}:" == line.strip():
+            if ((line.startswith('rule') and f"rule {rule}:" == line.strip()) or
+                    (line.startswith('checkpoint') and f"checkpoint {rule}:" == line.strip())):
                 rule_content += line
                 for line in reader:
                     # Stop when new rule, function or variable is found
-                    if not line.startswith("rule") and not line.startswith("def") and not re.search(r"^[A-Za-z_-]+", line):
+                    if (not line.startswith("rule") and not line.startswith("checkpoint") and
+                            not line.startswith("def") and not re.search(r"^[A-Za-z_-]+", line)):
                         rule_content += line
                     else:
                         return rule_content
@@ -114,6 +116,9 @@ def markdown_table(rule_source, rule_schema):
                 if "=" in line:
                     key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                     key = key.lstrip()
+                elif line.lstrip().startswith("unpack"):
+                    key = "unpack"
+                    value = line.split("unpack")[1].strip("(),")
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
                 for line in rows:
                     if re.match(exclude_section_regex, line):
@@ -123,6 +128,11 @@ def markdown_table(rule_source, rule_schema):
                         key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                         key = key.lstrip()
                         section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
+                    elif line.lstrip().startswith("unpack"):
+                        key = "unpack"
+                        value = line.split("unpack")[1].strip("(),")
+                        section_dict[key] += ","
+                        section_dict[key] += replace_newline(remove_temp_and_output(remove_indent(remove_comment(value))))
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
 
         return section_dict
