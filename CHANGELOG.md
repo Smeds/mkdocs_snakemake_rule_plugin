@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.5...v0.4.0) (2024-03-13)
+
+
+### Features
+
+* add support for checkpoint ([e7ff075](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/e7ff075133ea72a0e207dc246bbd5dea5b4525d1))
+* add support for unpack ([2530942](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/2530942f0cacb4d9dd4ef4188af67ed092f964eb))
+
 ## [0.3.5](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.4...v0.3.5) (2023-11-08)
 
 
