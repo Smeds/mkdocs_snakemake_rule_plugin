@@ -45,12 +45,12 @@ def extract_snakemake_rule(file_path, rule):
     with open(file_path, 'r') as reader:
         for line in reader:
             if ((line.startswith('rule') and f"rule {rule}:" == line.strip()) or
-                (line.startswith('checkpoint') and f"checkpoint {rule}:" == line.strip()):
+                    (line.startswith('checkpoint') and f"checkpoint {rule}:" == line.strip())):
                 rule_content += line
                 for line in reader:
                     # Stop when new rule, function or variable is found
                     if (not line.startswith("rule") and not line.startswith("checkpoint") and
-                        not line.startswith("def") and not re.search(r"^[A-Za-z_-]+", line):
+                            not line.startswith("def") and not re.search(r"^[A-Za-z_-]+", line)):
                         rule_content += line
                     else:
                         return rule_content
