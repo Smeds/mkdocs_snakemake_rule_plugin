@@ -114,6 +114,9 @@ def markdown_table(rule_source, rule_schema):
                 if "=" in line:
                     key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                     key = key.lstrip()
+                elif line.lstrip().startswith("unpack"):
+                    key = "unpack"
+                    value = line.split("unpack")[1].strip("(),")
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
                 for line in rows:
                     if re.match(exclude_section_regex, line):
@@ -123,6 +126,11 @@ def markdown_table(rule_source, rule_schema):
                         key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                         key = key.lstrip()
                         section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
+                    elif line.lstrip().startswith("unpack"):
+                        key = "unpack"
+                        value = line.split("unpack")[1].strip("(),")
+                        section_dict[key] += ","
+                        section_dict[key] += replace_newline(remove_temp_and_output(remove_indent(remove_comment(value))))
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
 
         return section_dict
