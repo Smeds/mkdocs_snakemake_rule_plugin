@@ -115,7 +115,10 @@ def markdown_table(rule_source, rule_schema):
                 value = line
                 if line.lstrip().startswith("unpack"):
                     key = "unpack"
-                    value = line.split("unpack")[1].strip("(),")
+                    if line.strip().endswith(","):
+                        value = line.split("unpack")[1].strip()[1:-2]
+                    else:
+                        value = line.split("unpack")[1].strip()[1:-1]
                 elif "=" in line:
                     key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                     key = key.lstrip()
@@ -130,7 +133,10 @@ def markdown_table(rule_source, rule_schema):
                         section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
                     elif line.lstrip().startswith("unpack"):
                         key = "unpack"
-                        value = line.split("unpack")[1].strip("(),")
+                        if line.strip().endswith(","):
+                            value = line.split("unpack")[1].strip()[1:-2]
+                        else:
+                            value = line.split("unpack")[1].strip()[1:-1]
                         parsed_val = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value))))
                         if key in section_dict:
                             section_dict[key] += f", {parsed_val}"
