@@ -1,5 +1,5 @@
 
-name: Lint
+name: Lint and Test
 
 # Controls when the action will run.
 on:
@@ -34,3 +34,19 @@ jobs:
           pip install pycodestyle
       - name: Check pycodestyle
         run: pycodestyle --max-line-length=135 --statistics ./
+
+  pytest:
+    name: run pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          pip install pytest
+          pip install -e .
+      - name: Run pytest
+        run: pytest tests/ -v
