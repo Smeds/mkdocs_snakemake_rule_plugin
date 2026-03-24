@@ -113,21 +113,21 @@ def markdown_table(rule_source, rule_schema):
                 key = "missing"
                 line = parse_variable(line, rows)
                 value = line
-                if "=" in line:
-                    key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
-                    key = key.lstrip()
-                elif line.lstrip().startswith("unpack"):
+                if line.lstrip().startswith("unpack"):
                     key = "unpack"
                     if line.strip().endswith(","):
                         value = line.split("unpack")[1].strip()[1:-2]
                     else:
                         value = line.split("unpack")[1].strip()[1:-1]
+                elif "=" in line:
+                    key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
+                    key = key.lstrip()
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
                 for line in rows:
                     if re.match(exclude_section_regex, line):
                         return section_dict
                     line = parse_variable(line, rows)
-                    if "=" in line:
+                    if "=" in line and not line.lstrip().startswith("unpack"):
                         key, value = re.split("[ ]*=[ ]*", line, maxsplit=1)
                         key = key.lstrip()
                         section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
@@ -137,8 +137,11 @@ def markdown_table(rule_source, rule_schema):
                             value = line.split("unpack")[1].strip()[1:-2]
                         else:
                             value = line.split("unpack")[1].strip()[1:-1]
-                        section_dict[key] += ","
-                        section_dict[key] += replace_newline(remove_temp_and_output(remove_indent(remove_comment(value))))
+                        parsed_val = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value))))
+                        if key in section_dict:
+                            section_dict[key] += f", {parsed_val}"
+                        else:
+                            section_dict[key] = parsed_val
                 section_dict[key] = replace_newline(remove_temp_and_output(remove_indent(remove_comment(value)).rstrip(",")))
 
         return section_dict
