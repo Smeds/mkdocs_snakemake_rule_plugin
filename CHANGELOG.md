@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.4.0...v0.4.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* handle unpack function calls containing '=' ([8dfd172](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/8dfd17233770c2897dcf70cefd81e1893352796a))
+
 ## [0.4.0](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.3.5...v0.4.0) (2024-03-13)
 
 
