@@ -51,6 +51,12 @@ rule second_rule:
         "results/file.txt"
     shell:
         "cp {input} {output}"
+
+rule rule_with_unpack:
+    input:
+        unpack(lambda wildcards:  get_input_haplotagged_bam(wildcards, config, set_type="T")),
+        vntr=config.get("severus_t_only", {}).get("vntr", ""),
+        pon=config.get("severus_t_only", {}).get("pon", ""),
 """
 
 SAMPLE_SCHEMA = {
@@ -246,6 +252,10 @@ class TestExtractSnakemakeRule:
         assert "rule second_rule:" in result
         assert 'cp {input} {output}' in result
 
+    def test_extracts_rule_with_unpack(self, smk_file):
+        result = extract_snakemake_rule(smk_file, "rule_with_unpack")
+        assert "rule rule_with_unpack:" in result
+
 
 # ── markdown_table ─────────────────────────────────────────────────────────────
 
@@ -304,8 +314,23 @@ class TestMarkdownTable:
         result = markdown_table(self.RULE_SOURCE, schema)
         assert "fixed_value" in result
 
+    def test_rule_with_unpack(self, smk_file):
+        rule = extract_snakemake_rule(smk_file, "rule_with_unpack")
+        schema = {
+            "properties": {
+                "input": {
+                    "properties": {
+                        "unpack": {"description": "Reads"},
+                        "vntr": {"description": "vtr"},
+                        "pon": {"description": "pon"}
+                    }
+                }
+            }
+        }
+        result = markdown_table(rule, schema)
+        print(result)
+        assert '`lambda wildcards: get_input_haplotagged_bam(wildcards, config, set_type="T")`' in result
 
-# ── markdown_gen.set_config ────────────────────────────────────────────────────
 
 class TestMarkdownGenSetConfig:
     def test_warns_when_no_rule_folders(self):
@@ -342,8 +367,6 @@ class TestMarkdownGenSetConfig:
         gen.set_config({"rule_folders": [rule_folder], "schemas": [schema_file]})
         assert gen.config_extracted_rules == {}
 
-
-# ── markdown_gen.find_file ─────────────────────────────────────────────────────
 
 class TestMarkdownGenFindFile:
     def test_finds_file_with_explicit_smk_extension(self, configured_gen):
