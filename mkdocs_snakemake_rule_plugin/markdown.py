@@ -74,9 +74,9 @@ def remove_indent(value):
 
 
 def remove_brackets(value):
-    if re.match(r"[ ]*\[", value):
+    if re.search(r"[ ]*\[", value):
         value = re.sub(r"[ ]*\[", "", value)
-    if re.match(r"\][ ]*", value):
+    if re.search(r"\][ ]*", value):
         value = re.sub(r"\][ ]*", "", value)
     return value
 
@@ -278,7 +278,9 @@ class markdown_gen:
         for schema in self.config_schemas:
             if rule_name in schema['properties']:
                 self.config_extracted_rules[rule_name]['schema'] = schema['properties'][rule_name]
-        if not self.config_extracted_rules[rule_name]['schema']:
+        if (rule_name not in self.config_extracted_rules or
+                'schema' not in self.config_extracted_rules[rule_name] or
+                not self.config_extracted_rules[rule_name]['schema']):
             raise RuleMissingSchemaFileError(f"Rule name not found in provided schemas {self.config_schemas}")
 
     def get_markdown(self, markdown, **kwargs):
