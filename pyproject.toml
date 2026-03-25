@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocs-snakemake-rule-plugin"
+version = "0.4.1"
+description = "MkDocs Plugin used to extract rule information, to generate code and tables."
+readme = "README.md"
+license = {text = "MIT license"}
+authors = [
+    {name = "Patrik Smeds", email = "patrik.smeds@gmail.com"}
+]
+keywords = ["mkdocs", "plugin", "yaml", "schema"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mkdocs",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/smeds/mkdocs-snakemake-rule-plugin"
+
+[project.entry-points."mkdocs.plugins"]
+snakemake-rule = "mkdocs_snakemake_rule_plugin.plugin:SnakemakeRule"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
