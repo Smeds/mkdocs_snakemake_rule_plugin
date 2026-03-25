@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkdocs-snakemake-rule-plugin"
-version = "0.4.1"
+version = "1.0.0"
 description = "MkDocs Plugin used to extract rule information, to generate code and tables."
 readme = "README.md"
 license = {text = "MIT license"}

@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.4.1...v1.0.0) (2026-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to pyproject.toml and release-please v4
+
+### Build System
+
+* migrate to pyproject.toml and release-please v4 ([ebdf956](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/commit/ebdf9568ef2a9d23818499fb2a34a9fd6af9647b))
+
 ## [0.4.1](https://github.com/Smeds/mkdocs_snakemake_rule_plugin/compare/v0.4.0...v0.4.1) (2026-03-24)
 
 
